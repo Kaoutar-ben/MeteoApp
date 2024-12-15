@@ -28,7 +28,7 @@ fun searchBare(
     searchBarePlaceholder: String,
     description: String,
     onButtonClick:() -> Unit,
-    onValueChange: (String) -> Unit):Unit{
+    onValueChange: (String) -> Unit){
     Row (modifier = modifier,
         horizontalArrangement = Arrangement.Center
         ){

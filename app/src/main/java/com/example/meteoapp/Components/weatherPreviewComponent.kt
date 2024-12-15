@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.meteoapp.Datacontracts.WeatherDataContact
 
 @Composable
-fun WeatherDataContact(modifier: Modifier,
+fun WeatherPreviewComponent(modifier: Modifier,
                        weatherDataContact: WeatherDataContact,
                        onButtonClicked:()-> Unit
                        ){
@@ -33,7 +33,7 @@ fun WeatherDataContact(modifier: Modifier,
 @Composable
 @Preview
 fun WeatherDataContactPreview(){
-    WeatherDataContact(
+    WeatherPreviewComponent(
         modifier = Modifier,
         weatherDataContact = WeatherDataContact(
             placeName = "Corte",
