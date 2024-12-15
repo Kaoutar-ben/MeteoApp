@@ -83,7 +83,7 @@ fun GetLocationComponentPreview(){
             }
         },
         onDeny = {
-            Log.d("info","Permission refusÃ©e")
+            Log.d("info","Permission refusée")
         }
     )
 }
