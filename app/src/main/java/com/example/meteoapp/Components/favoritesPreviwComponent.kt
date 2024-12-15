@@ -26,7 +26,8 @@ import com.example.meteoapp.Datacontracts.WeatherDataContact
 @Composable
 fun FavoritesPreviewComponent(modifier: Modifier,
                             weatherDataContact: WeatherDataContact,
-                            isFavorite: MutableState<Boolean>
+                            isFavorite: MutableState<Boolean>,
+                              onButtonClicked:()-> Unit
 ){
     Row(modifier = modifier
         .fillMaxWidth()
@@ -39,12 +40,17 @@ fun FavoritesPreviewComponent(modifier: Modifier,
 
     ) {
         Text(weatherDataContact.placeName)
-        IconButton(onClick = {isFavorite.value = !isFavorite.value}) {
-            if (isFavorite.value)
-                Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites",
-                    tint = Color.Red)
-            else
-                Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
+        Row {
+            IconButton(onClick = onButtonClicked) {
+                Icon(imageVector = Icons.Filled.Info, contentDescription = "Information")
+            }
+            IconButton(onClick = {isFavorite.value = !isFavorite.value}) {
+                if (isFavorite.value)
+                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites",
+                        tint = Color.Red)
+                else
+                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
+            }
         }
     }
 }
@@ -65,6 +71,7 @@ fun FavoritesPreviewComponentPreview(){
             temperatureUnit = "C",
             temperatureMeasure = mutableListOf()
         ),
-        isFavorite = favoriteList
+        isFavorite = favoriteList,
+        onButtonClicked = {}
     )
 }

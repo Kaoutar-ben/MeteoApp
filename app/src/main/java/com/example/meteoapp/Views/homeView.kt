@@ -100,7 +100,8 @@ fun homeView(){
                     item -> FavoritesPreviewComponent(
                         modifier = Modifier.fillMaxWidth(),
                         weatherDataContact = item,
-                        isFavorite = favoriteList
+                        isFavorite = favoriteList,
+                        onButtonClicked = {}
                     )
                 }
             }
