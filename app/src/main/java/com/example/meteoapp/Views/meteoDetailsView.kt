@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.meteoapp.Datacontracts.HourWeatherDate
 import com.example.meteoapp.Datacontracts.WeatherDataContact
+import java.time.LocalDateTime
 
 @Composable
 fun BoxedText(key:String,value:String){
@@ -50,11 +51,22 @@ fun meteoDetailsView(modifier: Modifier,
                      onAddToFav:()-> Unit){
     var expanded = remember { mutableStateOf(false) }
     var optionsMap = mutableMapOf<String, HourWeatherDate>()
-    val hourlyDataToShow = remember {mutableStateOf<HourWeatherDate?>(null)}
+
 
     weatherDataContact.temperatureMeasure.forEach{
         optionsMap[it.date] = it
     }
+
+    var defaultItemToShow:HourWeatherDate? = null
+
+    // show the last hour
+    val greaterKey = optionsMap.keys.maxWithOrNull(compareBy{ LocalDateTime.parse(it)})
+
+    if(greaterKey !== null)
+        defaultItemToShow = optionsMap[greaterKey]
+
+    val hourlyDataToShow = remember {mutableStateOf<HourWeatherDate?>(defaultItemToShow)}
+
     Column (
         modifier = Modifier.padding(10.dp),
         verticalArrangement = Arrangement.spacedBy(30.dp)){
@@ -129,10 +141,19 @@ fun meteoDetailsViewPreview(){
             temperatureUnit = "C",
             temperatureMeasure = mutableListOf(
                 HourWeatherDate(
-                    date = "2024-12-15",
+                    date = "2024-12-18T06:00",
                     temperature = "10",
                     temperatureMin = "4",
                     temperatureMax = "12",
+                    rainMeasure = "Null",
+                    cloudLowMeasure = "none",
+                    cloudHighMeasure = "none"
+                ),
+                HourWeatherDate(
+                    date = "2024-12-17T06:00",
+                    temperature = "8",
+                    temperatureMin = "2",
+                    temperatureMax = "13",
                     rainMeasure = "Null",
                     cloudLowMeasure = "none",
                     cloudHighMeasure = "none"
