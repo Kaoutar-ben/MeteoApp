@@ -98,11 +98,11 @@ fun homeView(){
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 items(items = proposals){
-                    item -> WeatherPreviewComponent(
+                        item -> WeatherPreviewComponent(
                     modifier = Modifier.fillMaxWidth(),
                     weatherDataContact= item,
                     onButtonClicked = {}
-                    )
+                )
                 }
             }
         }
@@ -111,14 +111,14 @@ fun homeView(){
             Text("Favorits",fontSize = 30.sp, fontWeight = FontWeight.Bold)
             val favoriteList = remember { mutableStateOf(true) }
             LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 items(items = favorit){
-                    item -> FavoritesPreviewComponent(
-                        modifier = Modifier.fillMaxWidth(),
-                        weatherDataContact = item,
-                        isFavorite = favoriteList,
-                        onButtonClicked = {}
-                    )
+                        item -> FavoritesPreviewComponent(
+                    modifier = Modifier.fillMaxWidth(),
+                    weatherDataContact = item,
+                    isFavorite = favoriteList,
+                    onButtonClicked = {}
+                )
                 }
             }
         }
