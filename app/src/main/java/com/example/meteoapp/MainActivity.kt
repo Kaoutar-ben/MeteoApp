@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -58,6 +59,19 @@ class MainActivity : ComponentActivity() {
                                     Icon(Icons.Filled.Favorite, contentDescription = "Favoris")
                                 },
                                 label = { Text("Favoris") }
+                            )
+
+                            NavigationBarItem(
+                                selected = currentRoute == Routes.METEO_DETAILS,
+                                onClick = {
+                                    navController.navigate(Routes.METEO_DETAILS) {
+                                        popUpTo(Routes.METEO_DETAILS) { inclusive = true }
+                                    }
+                                },
+                                icon = {
+                                    Icon(Icons.Filled.Info, contentDescription = "Détails Météo")
+                                },
+                                label = { Text("Détails") }
                             )
                         }
                     }
