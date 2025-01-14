@@ -7,10 +7,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -24,40 +26,37 @@ import androidx.compose.ui.unit.dp
 import com.example.meteoapp.Datacontracts.WeatherDataContact
 
 @Composable
-fun FavoritesPreviewComponent(modifier: Modifier,
-                            weatherDataContact: WeatherDataContact,
-                            isFavorite: MutableState<Boolean>,
-                              onButtonClicked:()-> Unit
-){
-    Row(modifier = modifier
-        .fillMaxWidth()
-        .border(
-            BorderStroke(2.dp, Color.Gray)
-        )
-        .padding(8.dp),
+fun FavoritesPreviewComponent(
+    modifier: Modifier,
+    weatherDataContact: WeatherDataContact,
+    isFavorite: MutableState<Boolean>,
+    onButtonClicked: () -> Unit,
+    onDeleteClicked: () -> Unit
+) {
+    Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
+        IconButton(onClick = onDeleteClicked) {
+            Icon(
+                imageVector = Icons.Filled.Delete,
+                contentDescription = "Supprimer des favoris",
+                tint = MaterialTheme.colorScheme.error
+            )
+        }
+
         Text(weatherDataContact.placeName)
-        Row {
-            IconButton(onClick = onButtonClicked) {
-                Icon(imageVector = Icons.Filled.Info, contentDescription = "Information")
-            }
-            IconButton(onClick = {isFavorite.value = !isFavorite.value}) {
-                if (isFavorite.value)
-                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites",
-                        tint = Color.Red)
-                else
-                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
-            }
+
+        IconButton(onClick = onButtonClicked) {
+            Icon(imageVector = Icons.Filled.Info, contentDescription = "Information")
         }
     }
 }
 
 @Composable
 @Preview
-fun FavoritesPreviewComponentPreview(){
+fun FavoritesPreviewComponentPreview() {
     val favoriteList = remember { mutableStateOf(false) }
     FavoritesPreviewComponent(
         modifier = Modifier.fillMaxWidth(),
@@ -72,6 +71,7 @@ fun FavoritesPreviewComponentPreview(){
             temperatureMeasure = mutableListOf()
         ),
         isFavorite = favoriteList,
-        onButtonClicked = {}
+        onButtonClicked = {},
+        onDeleteClicked = {}
     )
 }

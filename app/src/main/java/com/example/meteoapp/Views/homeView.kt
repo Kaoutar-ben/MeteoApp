@@ -117,7 +117,9 @@ fun homeView(){
                     modifier = Modifier.fillMaxWidth(),
                     weatherDataContact = item,
                     isFavorite = favoriteList,
-                    onButtonClicked = {}
+                    onButtonClicked = { },
+                    onDeleteClicked = {}
+
                 )
                 }
             }

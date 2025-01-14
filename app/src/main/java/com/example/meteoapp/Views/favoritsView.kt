@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.meteoapp.Components.FavoritesPreviewComponent
 import com.example.meteoapp.Datacontracts.WeatherDataContact
+import androidx.compose.material.icons.filled.Delete
 
 @Composable
 fun favoritsView(){
@@ -46,7 +47,10 @@ fun favoritsView(){
                 modifier = Modifier.fillMaxWidth(),
                 weatherDataContact = item,
                 isFavorite = favoriteList,
-                onButtonClicked = {}
+                onButtonClicked = {},
+                onDeleteClicked = {
+                    favorit.remove(item)
+                }
             )
             }
         }
